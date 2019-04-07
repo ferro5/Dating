@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace DatingApp.API.Migrations
 {
-    public partial class initial : Migration
+    public partial class create : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -179,8 +179,7 @@ namespace DatingApp.API.Migrations
                 name: "Photos",
                 columns: table => new
                 {
-                    Id = table.Column<int>(nullable: false)
-                        .Annotation("Sqlite:Autoincrement", true),
+                    Id = table.Column<string>(nullable: false),
                     Url = table.Column<string>(nullable: true),
                     Description = table.Column<string>(nullable: true),
                     DateAdded = table.Column<DateTime>(nullable: false),
@@ -201,17 +200,17 @@ namespace DatingApp.API.Migrations
             migrationBuilder.InsertData(
                 table: "AspNetRoles",
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
-                values: new object[] { "1", "baa65e9d-8353-4434-8b05-1808e0217313", "Admin", "ADMIN" });
+                values: new object[] { "1", "3e727669-bd3d-4a62-a3fa-92fea91e6b3c", "Admin", "ADMIN" });
 
             migrationBuilder.InsertData(
                 table: "AspNetRoles",
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
-                values: new object[] { "2", "3ce6b3e4-f956-45f5-9915-50e445f6b21f", "Customer", "CUSTOMER" });
+                values: new object[] { "2", "a775ee03-095f-4926-997f-c3185334aaf4", "Customer", "CUSTOMER" });
 
             migrationBuilder.InsertData(
                 table: "AspNetRoles",
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
-                values: new object[] { "3", "fbf1016d-e0f7-42df-b8b3-42a0a13357ed", "Moderator", "MODERATOR" });
+                values: new object[] { "3", "2333fde7-2ad3-4034-a46a-60e60c98b3b9", "Moderator", "MODERATOR" });
 
             migrationBuilder.CreateIndex(
                 name: "IX_AspNetRoleClaims_RoleId",

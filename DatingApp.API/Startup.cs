@@ -15,6 +15,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.IdentityModel.Tokens;
 using DatingApp.API.Models;
+using AutoMapper;
 
 namespace DatingApp.API
 {
@@ -35,6 +36,7 @@ namespace DatingApp.API
                     opt.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore;
                 });
             services.AddTransient<Seed>();
+            services.AddAutoMapper();
             services.AddCors(options =>
             {
                 options.AddPolicy("EnableCORS" , builder =>
@@ -105,13 +107,11 @@ namespace DatingApp.API
                 });
             }
             seeder.SeedUser();
-
             app.UseCors("EnableCORS");
             app.UseDeveloperExceptionPage();
             app.UseAuthentication();
             app.UseDatabaseErrorPage();
-            app.UseAuthentication();
-        
+            app.UseAuthentication();        
             app.UseMvc();
         }
     }

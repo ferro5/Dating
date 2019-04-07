@@ -88,7 +88,7 @@ namespace DatingApp.API.Migrations
 
             modelBuilder.Entity("DatingApp.API.Models.Photo", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<string>("Id")
                         .ValueGeneratedOnAdd();
 
                     b.Property<DateTime>("DateAdded");
@@ -147,21 +147,21 @@ namespace DatingApp.API.Migrations
                         new
                         {
                             Id = "1",
-                            ConcurrencyStamp = "baa65e9d-8353-4434-8b05-1808e0217313",
+                            ConcurrencyStamp = "3e727669-bd3d-4a62-a3fa-92fea91e6b3c",
                             Name = "Admin",
                             NormalizedName = "ADMIN"
                         },
                         new
                         {
                             Id = "2",
-                            ConcurrencyStamp = "3ce6b3e4-f956-45f5-9915-50e445f6b21f",
+                            ConcurrencyStamp = "a775ee03-095f-4926-997f-c3185334aaf4",
                             Name = "Customer",
                             NormalizedName = "CUSTOMER"
                         },
                         new
                         {
                             Id = "3",
-                            ConcurrencyStamp = "fbf1016d-e0f7-42df-b8b3-42a0a13357ed",
+                            ConcurrencyStamp = "2333fde7-2ad3-4034-a46a-60e60c98b3b9",
                             Name = "Moderator",
                             NormalizedName = "MODERATOR"
                         });
