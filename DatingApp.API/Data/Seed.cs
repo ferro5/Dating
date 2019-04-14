@@ -25,13 +25,9 @@ namespace DatingApp.API.Data
                 user.NormalizedUserName = user.NormalizedUserName;
                 user.PasswordHash = passwordHash;
                 user.UserName = user.UserName.ToLower();        
-                _context.Users.Add(user);
-              
+            _context.Users.Add(user);
             }
             _context.SaveChanges();
-
-
-
         }
 
     

@@ -47,7 +47,7 @@ namespace DatingApp.API
 
             services.AddDbContext<DataContext>(x => x.UseSqlite(Configuration.GetConnectionString("DefaultConnection")));
             services.AddScoped<IDatingRepository, DatingRepository>();
-             services.AddIdentity<ApplicationUser, IdentityRole>(options =>
+             services.AddIdentity<ApplicationUser, IdentityRole<int>>(options =>
                    {
                        options.Password.RequireDigit = true;
                        options.Password.RequiredLength = 6;

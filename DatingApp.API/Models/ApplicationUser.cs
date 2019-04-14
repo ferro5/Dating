@@ -5,7 +5,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace DatingApp.API.Models
 {
-    public class ApplicationUser : IdentityUser
+    public class ApplicationUser : IdentityUser<int>
     {
         public string Gender { get; set; }
         public DateTime DateOfBirth { get; set; }
@@ -18,6 +18,6 @@ namespace DatingApp.API.Models
         public string City { get; set; }
         public string Country { get; set; }
         [Required]
-        public virtual List<Photo> Photos { get; set; }
+        public virtual ICollection<Photo> Photos { get; set; }
     }
 }

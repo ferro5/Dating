@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace DatingApp.API.Data
 {
-    public class DataContext : IdentityDbContext<ApplicationUser>
+    public class DataContext : IdentityDbContext<ApplicationUser,IdentityRole<int> , int>
     {
         public DataContext(DbContextOptions<DataContext> options) : base(options)
         {
@@ -14,23 +14,28 @@ namespace DatingApp.API.Data
         protected override void OnModelCreating(ModelBuilder builder)
         {
             base.OnModelCreating(builder);
-            builder.Entity<IdentityRole>().HasData(
-                new IdentityRole
+            builder.Entity<IdentityRole<int>>().HasData(
+                new IdentityRole<int>
                 {
-                    Id = "1", Name = "Admin", NormalizedName = "ADMIN"
+                    Id = 1,
+                    Name = "Admin",
+                    NormalizedName = "ADMIN"
                 },
-                new IdentityRole
+                new IdentityRole<int>
                 {
-                    Id = "2",
-                    Name = "Customer", NormalizedName = "CUSTOMER"
+                    Id = 2,
+                    Name = "Customer",
+                    NormalizedName = "CUSTOMER"
                 },
-                new IdentityRole
+                new IdentityRole<int>
                 {
-                    Id = "3",Name = "Moderator",NormalizedName = "MODERATOR"
+                    Id = 3,
+                    Name = "Moderator",
+                    NormalizedName = "MODERATOR"
                 });
-            
-           
-                 
+
+
+
         }
 
 
