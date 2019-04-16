@@ -22,6 +22,12 @@ import { MembersComponent } from './members/members.component';
 import { MemberCardComponent } from './members/member-card/member-card.component';
 import { JwtModule } from '@auth0/angular-jwt';
 import { MemberDetailComponent } from './members/member-detail/member-detail.component';
+import { MemberDetailReslover } from './_resolvers/member-detail-reslover';
+import { MemberListReslover } from './_resolvers/member-list-reslover';
+import { NgxGalleryModule } from 'ngx-gallery';
+import { MemberEditComponent } from './members/member-edit/member-edit.component';
+import { MemberEditReslover } from './_resolvers/member-edit-reslover';
+import { PreventUnsavedChanges } from './_guards/prevent-unsaved-changed-guard';
 
 export function tokkenGetter() {
    return localStorage.getItem('token');
@@ -38,7 +44,8 @@ export function tokkenGetter() {
       MessagesComponent,
       MembersComponent,
       MemberCardComponent,
-      MemberDetailComponent
+      MemberDetailComponent,
+      MemberEditComponent
    ],
    imports: [
       BrowserModule,
@@ -48,6 +55,7 @@ export function tokkenGetter() {
       TabsModule.forRoot(),
       BsDropdownModule.forRoot(),
       RouterModule.forRoot(appRoutes),
+      NgxGalleryModule,
       JwtModule.forRoot({
        config: {
          tokenGetter: tokkenGetter,
@@ -61,6 +69,10 @@ export function tokkenGetter() {
       ErrorInterceptorProvider,
       AletifyService,
       AuthGuard,
+      MemberDetailReslover,
+      MemberListReslover,
+      MemberEditReslover,
+      PreventUnsavedChanges,
       UserService
    ],
    bootstrap: [
