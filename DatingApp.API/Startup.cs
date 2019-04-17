@@ -37,6 +37,7 @@ namespace DatingApp.API
                 });
             services.AddTransient<Seed>();
             services.AddAutoMapper();
+            services.Configure<CloudinarySettings>(Configuration.GetSection("CloudinarySettings"));
             services.AddCors(options =>
             {
                 options.AddPolicy("EnableCORS" , builder =>
