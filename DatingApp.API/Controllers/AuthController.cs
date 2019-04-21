@@ -5,11 +5,13 @@ using System.Linq;
 using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
+using AutoMapper;
 using DatingApp.API.DTO;
 using DatingApp.API.Helpers;
 using DatingApp.API.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Query.ExpressionVisitors.Internal;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
@@ -23,13 +25,15 @@ namespace DatingApp.API.Controllers
         private readonly UserManager<ApplicationUser> _userManager;
         private readonly SignInManager<ApplicationUser> _signInManager;
         private readonly AppSettings _appSettings;
+        private readonly IMapper _mapper;
 
         public AuthController(UserManager<ApplicationUser> userManager, SignInManager<ApplicationUser> signInManager,
-            IOptions<AppSettings> appSettings)
+            IOptions<AppSettings> appSettings,IMapper mapper)
         {
             _userManager = userManager;
             _signInManager = signInManager;
             _appSettings = appSettings.Value;
+            _mapper = mapper;
         }
 
         [HttpPost("register")]
@@ -59,20 +63,22 @@ namespace DatingApp.API.Controllers
             }
 
             return BadRequest(new JsonResult(errorList));
-
         }
 
         [HttpPost("login")]
         public async Task<IActionResult> Login([FromBody] UserForLoginDto loginModel)
         {
-            var user = await _userManager.FindByNameAsync(loginModel.Username);
+            var userPhoto = _userManager.Users.Include(p => p.Photos);
+            var user = await _userManager.FindByNameAsync(loginModel.Username);   
+
             var roles = await _userManager.GetRolesAsync(user);
-            //var normalizeName = await _userManager.FindByNameAsync(loginModel.)
+
             var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_appSettings.Secret));
             double tokenExpireTime = Convert.ToDouble(_appSettings.ExpireTime);
             if (user != null&& await _userManager.CheckPasswordAsync(user,loginModel.Password))
             {
                 var  tokenHandler = new JwtSecurityTokenHandler();
+                //create description
                 var  tokenDescriptor = new SecurityTokenDescriptor
                 {
                     Subject = new ClaimsIdentity(new Claim[]
@@ -89,7 +95,10 @@ namespace DatingApp.API.Controllers
                     Expires = DateTime.Now.AddMinutes(tokenExpireTime)
                 };
                 var token = tokenHandler.CreateToken(tokenDescriptor);
-                return Ok(new {token = tokenHandler.WriteToken(token),expiration = token.ValidTo,username = user.UserName,userRole = roles.FirstOrDefault(),mormilizeName = user.NormalizedUserName});
+                var userFromRepo = _mapper.Map<UserForListDto>(user);
+                return Ok(new
+                    { token = tokenHandler.WriteToken(token),expiration = token.ValidTo,username = user.UserName,
+                        userRole = roles.FirstOrDefault(),mormilizeName = user.NormalizedUserName});
             }
             ModelState.AddModelError("" , "Username/Password was not found");
             return Unauthorized(new

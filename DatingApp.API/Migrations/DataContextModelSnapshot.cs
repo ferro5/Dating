@@ -148,21 +148,21 @@ namespace DatingApp.API.Migrations
                         new
                         {
                             Id = 1,
-                            ConcurrencyStamp = "4fce3449-74ad-4d3b-9ff9-a92ca083a267",
+                            ConcurrencyStamp = "4dc559ff-8c91-42d2-816c-5f27a2595c25",
                             Name = "Admin",
                             NormalizedName = "ADMIN"
                         },
                         new
                         {
                             Id = 2,
-                            ConcurrencyStamp = "a953be34-f014-4cf2-97be-7fc900838b35",
+                            ConcurrencyStamp = "c5fce594-d3c6-4da9-835c-a3f49ba3fc17",
                             Name = "Customer",
                             NormalizedName = "CUSTOMER"
                         },
                         new
                         {
                             Id = 3,
-                            ConcurrencyStamp = "55e686b7-fb22-472e-8273-19fc0fa07d1c",
+                            ConcurrencyStamp = "f3d3d68b-0c36-4158-801a-1622b79db0c2",
                             Name = "Moderator",
                             NormalizedName = "MODERATOR"
                         });

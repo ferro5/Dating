@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace DatingApp.API.Migrations
 {
-    public partial class initial_create : Migration
+    public partial class initial : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -187,6 +187,7 @@ namespace DatingApp.API.Migrations
                     Description = table.Column<string>(nullable: true),
                     DateAdded = table.Column<DateTime>(nullable: false),
                     IsMain = table.Column<bool>(nullable: false),
+                    PublicID = table.Column<string>(nullable: true),
                     UserId = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
@@ -203,17 +204,17 @@ namespace DatingApp.API.Migrations
             migrationBuilder.InsertData(
                 table: "AspNetRoles",
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
-                values: new object[] { 1, "57ae5177-a6f9-4a07-9057-06b7c57097aa", "Admin", "ADMIN" });
+                values: new object[] { 1, "4dc559ff-8c91-42d2-816c-5f27a2595c25", "Admin", "ADMIN" });
 
             migrationBuilder.InsertData(
                 table: "AspNetRoles",
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
-                values: new object[] { 2, "8618fa04-520b-47be-88d4-8e70ca7e9512", "Customer", "CUSTOMER" });
+                values: new object[] { 2, "c5fce594-d3c6-4da9-835c-a3f49ba3fc17", "Customer", "CUSTOMER" });
 
             migrationBuilder.InsertData(
                 table: "AspNetRoles",
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
-                values: new object[] { 3, "68f42323-297d-418e-9604-40d3cdf6c634", "Moderator", "MODERATOR" });
+                values: new object[] { 3, "f3d3d68b-0c36-4158-801a-1622b79db0c2", "Moderator", "MODERATOR" });
 
             migrationBuilder.CreateIndex(
                 name: "IX_AspNetRoleClaims_RoleId",
